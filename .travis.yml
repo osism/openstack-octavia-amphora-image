@@ -1,0 +1,23 @@
+---
+language: python
+
+install:
+  - pip install -r requirements.txt
+  - bash scripts/install.sh
+
+env:
+  matrix:
+    - VERSION=master BUILD_TYPE=disk
+    - VERSION=master BUILD_TYPE=container
+#    - VERSION=train BUILD_TYPE=disk
+#    - VERSION=train BUILD_TYPE=container
+
+script:
+  - bash scripts/build.sh
+
+deploy:
+  - provider: script
+    script: bash scripts/push.sh
+    skip_cleanup: true
+    on:
+      branch: master

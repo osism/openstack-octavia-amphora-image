@@ -1,0 +1,9 @@
+---
+clouds:
+  octavia:
+    profile: betacloud
+    auth:
+      username: USERNAME
+      project_name: PROJECT
+      project_domain_name: DOMAIN
+      user_domain_name: DOMAIN
