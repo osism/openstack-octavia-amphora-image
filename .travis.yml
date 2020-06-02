@@ -9,6 +9,8 @@ env:
   matrix:
     - VERSION=master BUILD_TYPE=disk
     - VERSION=master BUILD_TYPE=container
+    - VERSION=ussuri BUILD_TYPE=disk
+    - VERSION=ussuri BUILD_TYPE=container
 #    - VERSION=train BUILD_TYPE=disk
 #    - VERSION=train BUILD_TYPE=container
 
