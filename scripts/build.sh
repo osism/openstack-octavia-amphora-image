@@ -24,7 +24,10 @@ else
     TAG=latest
 fi
 
-git clone https://github.com/openstack/octavia
+if [[ ! -e octavia ]]; then
+    git clone https://github.com/openstack/octavia
+fi
+
 cd octavia/diskimage-create
 
 if [[ $BUILD_TYPE == "disk" ]]; then
