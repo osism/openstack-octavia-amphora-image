@@ -37,7 +37,7 @@ if [[ $BUILD_TYPE == "disk" ]]; then
         -d $DISTRIBUTION_RELEASE \
         -g $VERSION \
         -i $DISTRIBUTION \
-        -o octavia-amphora-haproxy-$VERSION.qcow2 \
+        -o octavia-amphora-haproxy-$TAG.qcow2 \
         -s 2 \
         -t qcow2
 fi
