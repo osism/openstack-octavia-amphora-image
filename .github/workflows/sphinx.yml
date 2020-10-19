@@ -1,0 +1,39 @@
+---
+name: Sphinx
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+
+jobs:
+  default:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('docs/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Install requirements
+        run: pip install -r requirements.txt
+        working-directory: docs
+      - name: Build documentation
+        run: sphinx-build -b html source build/html
+        working-directory: docs
+      - name: Push documentation
+        run: |
+          sudo apt-get install -y lftp
+          lftp -u '${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}' -e 'set sftp:auto-confirm yes; mirror -R --delete docs/build/html /; exit;' 'sftp://${{ secrets.FTP_HOSTNAME }}'
+        if: github.ref == 'refs/heads/master'
