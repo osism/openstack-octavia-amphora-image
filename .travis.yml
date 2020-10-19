@@ -18,6 +18,8 @@ env:
     - VERSION=stein BUILD_TYPE=container
     - VERSION=ussuri BUILD_TYPE=disk
     - VERSION=ussuri BUILD_TYPE=container
+    - VERSION=victoria BUILD_TYPE=disk
+    - VERSION=victoria BUILD_TYPE=container
 
 script:
   - bash scripts/build.sh
