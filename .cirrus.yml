@@ -1,0 +1,33 @@
+---
+compute_engine_instance:
+  image_project: cirrus-images
+  image: family/docker-kvm
+  platform: linux
+  cpu: 4
+  memory: 16G
+  disk: 100
+  nested_virtualization: true
+
+task:
+  skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
+
+  matrix:
+    - VERSION=master BUILD_TYPE=disk
+    - VERSION=victoria BUILD_TYPE=disk
+    - VERSION=wallaby BUILD_TYPE=disk
+
+  install_script:
+    - apt-get update
+    - pip install -r requirements.txt
+    - bash scripts/install.sh
+
+  submodules_script:
+    - git submodule init
+    - git submodule update
+
+  build_script:
+    - bash scripts/build.sh
+
+  deploy_task:
+    only_if: $CIRRUS_BRANCH == 'master'
+    skript: bash scripts/push.sh
