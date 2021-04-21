@@ -1,7 +1,5 @@
 # OpenStack Octavia Amphora Image
 
-[![Build Status](https://travis-ci.org/osism/openstack-octavia-amphora-image.svg?branch=master)](https://travis-ci.org/osism/openstack-octavia-amphora-image)
-
 ## Download
 
 A daily updated image in QCOW2 format is available at https://files.osism.de/octavia-amphora-haproxy-master.qcow2.
