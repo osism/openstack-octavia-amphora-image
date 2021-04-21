@@ -12,14 +12,21 @@ task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
 
   matrix:
-    - VERSION=master BUILD_TYPE=disk
-    - VERSION=victoria BUILD_TYPE=disk
-    - VERSION=wallaby BUILD_TYPE=disk
+    - env:
+      VERSION: master
+      BUILD_TYPE: disk
+    - env:
+      VERSION: victoria
+      BUILD_TYPE: disk
+    - env:
+      VERSION: wallaby
+      BUILD_TYPE: disk
 
   install_script:
     - apt-get update
     - pip install -r requirements.txt
     - bash scripts/install.sh
+    - echo $CIRRUS_BRANCH
 
   submodules_script:
     - git submodule init
@@ -27,6 +34,7 @@ task:
 
   build_script:
     - bash scripts/build.sh
+    - echo $CIRRUS_BRANCH
 
   deploy_task:
     only_if: $CIRRUS_BRANCH == 'master'
