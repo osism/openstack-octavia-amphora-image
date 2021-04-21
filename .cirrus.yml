@@ -8,19 +8,62 @@ compute_engine_instance:
   disk: 100
   nested_virtualization: true
 
-task:
+master_task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
 
-  matrix:
-    - env:
-      VERSION: master
-      BUILD_TYPE: disk
-    - env:
-      VERSION: victoria
-      BUILD_TYPE: disk
-    - env:
-      VERSION: wallaby
-      BUILD_TYPE: disk
+  environment:
+    VERSION: master
+    BUILD_TYPE: disk
+
+  install_script:
+    - apt-get update
+    - pip install -r requirements.txt
+    - bash scripts/install.sh
+    - echo $CIRRUS_BRANCH
+
+  submodules_script:
+    - git submodule init
+    - git submodule update
+
+  build_script:
+    - bash scripts/build.sh
+    - echo $CIRRUS_BRANCH
+
+  deploy_task:
+    only_if: $CIRRUS_BRANCH == 'master'
+    skript: bash scripts/push.sh
+
+victoria_task:
+  skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
+
+  environment:
+    VERSION: victoria
+    BUILD_TYPE: disk
+
+  install_script:
+    - apt-get update
+    - pip install -r requirements.txt
+    - bash scripts/install.sh
+    - echo $CIRRUS_BRANCH
+
+  submodules_script:
+    - git submodule init
+    - git submodule update
+
+  build_script:
+    - bash scripts/build.sh
+    - echo $CIRRUS_BRANCH
+
+  deploy_task:
+    only_if: $CIRRUS_BRANCH == 'master'
+    skript: bash scripts/push.sh
+
+wallaby_task:
+  skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
+
+  environment:
+    VERSION: wallaby
+    BUILD_TYPE: disk
 
   install_script:
     - apt-get update
