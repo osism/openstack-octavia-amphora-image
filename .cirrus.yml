@@ -17,6 +17,7 @@ master_task:
 
   install_script:
     - apt-get update
+    - apt-get install python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
     - echo $CIRRUS_BRANCH
@@ -42,6 +43,7 @@ victoria_task:
 
   install_script:
     - apt-get update
+    - apt-get install python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
     - echo $CIRRUS_BRANCH
@@ -67,6 +69,7 @@ wallaby_task:
 
   install_script:
     - apt-get update
+    - apt-get install python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
     - echo $CIRRUS_BRANCH
