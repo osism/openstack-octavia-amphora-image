@@ -1,7 +1,7 @@
 ---
 name: Sphinx
 
-on:
+"on":
   push:
     paths:
       - 'docs/**'

@@ -1,7 +1,7 @@
 ---
 name: Check python syntax
 
-on:
+"on":
   push:
     paths:
       - '**.py'

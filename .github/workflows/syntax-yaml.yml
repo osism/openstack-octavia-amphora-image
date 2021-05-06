@@ -1,7 +1,7 @@
 ---
 name: Check yaml syntax
 
-on:
+"on":
   push:
     paths:
       - '**.yml'
