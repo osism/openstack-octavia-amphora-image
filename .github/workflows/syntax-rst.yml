@@ -1,7 +1,7 @@
 ---
 name: Check rst syntax
 
-on:
+"on":
   push:
     paths:
       - '**.rst'

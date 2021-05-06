@@ -1,7 +1,7 @@
 ---
 name: Check ansible syntax
 
-on:
+"on":
   push:
     paths:
       - 'environments/**.yml'
