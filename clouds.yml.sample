@@ -5,5 +5,5 @@ clouds:
     auth:
       username: USERNAME
       project_name: PROJECT
-      project_domain_name: DOMAIN
-      user_domain_name: DOMAIN
+      project_domain_name: PROJECT_DOMAIN
+      user_domain_name: USER_DOMAIN
