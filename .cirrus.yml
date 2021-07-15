@@ -20,7 +20,6 @@ master_task:
     - apt-get install -y python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
-    - echo $CIRRUS_BRANCH
 
   submodules_script:
     - git submodule init
@@ -30,9 +29,8 @@ master_task:
     - bash scripts/build.sh
     - echo $CIRRUS_BRANCH
 
-  deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
-    skript: bash scripts/push.sh
+  publish_script:
+    - bash ./cirrus-publish.sh
 
 victoria_task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
@@ -46,7 +44,6 @@ victoria_task:
     - apt-get install -y python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
-    - echo $CIRRUS_BRANCH
 
   submodules_script:
     - git submodule init
@@ -56,9 +53,8 @@ victoria_task:
     - bash scripts/build.sh
     - echo $CIRRUS_BRANCH
 
-  deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
-    skript: bash scripts/push.sh
+  publish_script:
+    - bash ./cirrus-publish.sh
 
 wallaby_task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
@@ -72,7 +68,6 @@ wallaby_task:
     - apt-get install -y python3-pip
     - pip install -r requirements.txt
     - bash scripts/install.sh
-    - echo $CIRRUS_BRANCH
 
   submodules_script:
     - git submodule init
@@ -82,6 +77,5 @@ wallaby_task:
     - bash scripts/build.sh
     - echo $CIRRUS_BRANCH
 
-  deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
-    skript: bash scripts/push.sh
+  publish_script:
+    - bash ./cirrus-publish.sh
