@@ -9,7 +9,6 @@
 
 # Set default values
 
-BUILD_TYPE=${BUILD_TYPE:-disk}
 VERSION=${VERSION:-master}
 DISTRIBUTION=${DISTRIBUTION:-ubuntu-minimal}
 DISTRIBUTION_RELEASE=${DISTRIBUTION_RELEASE:-bionic}
@@ -30,27 +29,12 @@ fi
 
 cd octavia/diskimage-create
 
-if [[ $BUILD_TYPE == "disk" ]]; then
-    bash diskimage-create.sh \
-        -a amd64 \
-        -b haproxy \
-        -d $DISTRIBUTION_RELEASE \
-        -g $VERSION \
-        -i $DISTRIBUTION \
-        -o octavia-amphora-haproxy-$TAG.qcow2 \
-        -s 2 \
-        -t qcow2
-fi
-
-if [[ $BUILD_TYPE == "container" ]]; then
-    bash diskimage-create.sh \
-        -a amd64 \
-        -b haproxy \
-        -d $DISTRIBUTION_RELEASE \
-        -g $VERSION \
-        -i $DISTRIBUTION \
-        -o octavia-amphora-haproxy-$TAG.tar \
-        -t tar
-
-    docker import - osism/octavia-amphora-haproxy:$TAG < octavia-amphora-haproxy-$TAG.tar
-fi
+bash diskimage-create.sh \
+    -a amd64 \
+    -b haproxy \
+    -d $DISTRIBUTION_RELEASE \
+    -g $VERSION \
+    -i $DISTRIBUTION \
+    -o octavia-amphora-haproxy-$TAG.qcow2 \
+    -s 2 \
+    -t qcow2

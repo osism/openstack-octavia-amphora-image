@@ -13,7 +13,6 @@ master_task:
 
   environment:
     VERSION: master
-    BUILD_TYPE: disk
 
   install_script:
     - apt-get update
@@ -39,7 +38,6 @@ victoria_task:
 
   environment:
     VERSION: victoria
-    BUILD_TYPE: disk
 
   install_script:
     - apt-get update
@@ -65,7 +63,6 @@ wallaby_task:
 
   environment:
     VERSION: wallaby
-    BUILD_TYPE: disk
 
   install_script:
     - apt-get update
