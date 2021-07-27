@@ -31,7 +31,7 @@ master_task:
     - echo $CIRRUS_BRANCH
 
   deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
+    only_if: $CIRRUS_BRANCH == 'main'
     skript: bash scripts/push.sh
 
 victoria_task:
@@ -57,7 +57,7 @@ victoria_task:
     - echo $CIRRUS_BRANCH
 
   deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
+    only_if: $CIRRUS_BRANCH == 'main'
     skript: bash scripts/push.sh
 
 wallaby_task:
@@ -83,5 +83,5 @@ wallaby_task:
     - echo $CIRRUS_BRANCH
 
   deploy_task:
-    only_if: $CIRRUS_BRANCH == 'master'
+    only_if: $CIRRUS_BRANCH == 'main'
     skript: bash scripts/push.sh
