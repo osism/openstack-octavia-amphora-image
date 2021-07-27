@@ -34,7 +34,3 @@ bash diskimage-create.sh \
     -t qcow2
 
 popd
-
-if [[ $CIRRUS_BRANCH == "main" ]]; then
-    bash scripts/push.sh
-fi

@@ -8,6 +8,16 @@ compute_engine_instance:
   disk: 100
   nested_virtualization: true
 
+# environment variables
+
+env:
+  DEBIAN_FRONTEND: noninteractive
+  HOME: "$CIRRUS_WORKING_DIR"
+  MINIO_ACCESS_KEY: "ENCRYPTED[90c27e04a5082e96b84bbd349f3d3a3b936878671b13e853336aa72ec8d55aae94c10f0eb6772f8d5470370d95d3a9e0]"
+  MINIO_SECRET_KEY: "ENCRYPTED[40b2c6de91420bdaf5366dad9f2c784ed3b5145e7a4591f1365d4ee0dd71db436a7b9f8483883066325660612a66c5cc]"
+
+# task definitions
+
 victoria_task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
 
@@ -16,9 +26,11 @@ victoria_task:
 
   install_script:
     - apt-get update
-    - apt-get install -y python3-pip
+    - apt-get install -y python3-pip kpartx qemu-utils git debootstrap
     - pip install -r requirements.txt
-    - bash scripts/install.sh
+    - wget https://dl.min.io/client/mc/release/linux-amd64/mc
+    - chmod +x mc
+    - ./mc alias set minio https://images.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 
   submodules_script:
     - git submodule init
@@ -26,6 +38,10 @@ victoria_task:
 
   build_script:
     - bash scripts/build.sh
+
+  push_script:
+    - ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-$VERSION.qcow2 minio/openstack-octavia-apmphora-image
+    - ./mc policy set download minio/openstack-octavia-apmphora-image/octavia-amphora-haproxy-$VERSION.qcow2
 
 wallaby_task:
   skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
@@ -35,9 +51,11 @@ wallaby_task:
 
   install_script:
     - apt-get update
-    - apt-get install -y python3-pip
+    - apt-get install -y python3-pip kpartx qemu-utils git debootstrap
     - pip install -r requirements.txt
-    - bash scripts/install.sh
+    - wget https://dl.min.io/client/mc/release/linux-amd64/mc
+    - chmod +x mc
+    - ./mc alias set minio https://images.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 
   submodules_script:
     - git submodule init
@@ -45,3 +63,7 @@ wallaby_task:
 
   build_script:
     - bash scripts/build.sh
+
+  push_script:
+    - ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-$VERSION.qcow2 minio/openstack-octavia-apmphora-image
+    - ./mc policy set download minio/openstack-octavia-apmphora-image/octavia-amphora-haproxy-$VERSION.qcow2
