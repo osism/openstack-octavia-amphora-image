@@ -21,7 +21,7 @@ if [[ ! -e octavia ]]; then
     git clone https://github.com/openstack/octavia
 fi
 
-cd octavia/diskimage-create
+pushd octavia/diskimage-create
 
 bash diskimage-create.sh \
     -a amd64 \
@@ -32,3 +32,9 @@ bash diskimage-create.sh \
     -o octavia-amphora-haproxy-$VERSION.qcow2 \
     -s 2 \
     -t qcow2
+
+popd
+
+if [[ $CIRRUS_BRANCH == "main" ]]; then
+    bash scripts/push.sh
+fi
