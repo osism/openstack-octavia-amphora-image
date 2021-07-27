@@ -9,7 +9,6 @@
 
 # Set default values
 
-BUILD_TYPE=${BUILD_TYPE:-disk}
 VERSION=${VERSION:-master}
 
 if [[ $VERSION == "master" ]]; then

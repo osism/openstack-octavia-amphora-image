@@ -2,7 +2,6 @@
 
 # Available environment variables
 #
-# BUILD_TYPE
 # DISTRIBUTION
 # DISTRIBUTION_RELEASE
 # VERSION
