@@ -11,7 +11,7 @@
 $ pip3 install python-openstackclient
 $ qemu-img convert octavia-amphora-haproxy-wallaby.qcow2 octavia-amphora-haproxy-wallaby.img
 $ openstack --os-cloud octavia image create \
-    --private \
+    --community \
     --disk-format raw \
     --file octavia-amphora-haproxy-wallaby.img \
     --min-disk 2 \
