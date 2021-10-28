@@ -13,8 +13,8 @@ compute_engine_instance:
 env:
   DEBIAN_FRONTEND: noninteractive
   HOME: "$CIRRUS_WORKING_DIR"
-  MINIO_ACCESS_KEY: "ENCRYPTED[90c27e04a5082e96b84bbd349f3d3a3b936878671b13e853336aa72ec8d55aae94c10f0eb6772f8d5470370d95d3a9e0]"
-  MINIO_SECRET_KEY: "ENCRYPTED[40b2c6de91420bdaf5366dad9f2c784ed3b5145e7a4591f1365d4ee0dd71db436a7b9f8483883066325660612a66c5cc]"
+  MINIO_ACCESS_KEY: "ENCRYPTED[ee68006d95a0c24238642dc37fa69659f4971c42bac5a012caf3344225f8767740e9bf5d85a52b1cea30d93f260ac445]"
+  MINIO_SECRET_KEY: "ENCRYPTED[b668bb22014144c7cdc5f598cbdce9ea08982a0db610a362a515cafc956aac445106e2fff06286fd2b9ab4c4bc15a52b]"
 
 # task definitions
 
@@ -30,7 +30,7 @@ victoria_task:
     - pip install -r requirements.txt
     - wget https://dl.min.io/client/mc/release/linux-amd64/mc
     - chmod +x mc
-    - ./mc alias set minio https://images.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+    - ./mc alias set minio https://minio.services.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 
   submodules_script:
     - git submodule init
@@ -55,7 +55,7 @@ wallaby_task:
     - pip install -r requirements.txt
     - wget https://dl.min.io/client/mc/release/linux-amd64/mc
     - chmod +x mc
-    - ./mc alias set minio https://images.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+    - ./mc alias set minio https://minio.services.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 
   submodules_script:
     - git submodule init
