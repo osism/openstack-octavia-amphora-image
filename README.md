@@ -2,8 +2,8 @@
 
 ## Download
 
-* https://images.osism.tech/openstack-octavia-apmphora-image/octavia-amphora-haproxy-victoria.qcow2
-* https://images.osism.tech/openstack-octavia-apmphora-image/octavia-amphora-haproxy-wallaby.qcow2
+* https://minio.services.osism.tech/openstack-octavia-apmphora-image/octavia-amphora-haproxy-victoria.qcow2
+* https://minio.services.osism.tech/openstack-octavia-apmphora-image/octavia-amphora-haproxy-wallaby.qcow2
 
 ## Upload
 
