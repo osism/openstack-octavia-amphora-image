@@ -67,3 +67,28 @@ wallaby_task:
   push_script:
     - ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-$VERSION.qcow2 minio/openstack-octavia-amphora-image
     - ./mc policy set download minio/openstack-octavia-amphora-image/octavia-amphora-haproxy-$VERSION.qcow2
+
+xena_task:
+  skip: "!changesInclude('.cirrus.yml', 'scripts/**')"
+
+  environment:
+    VERSION: xena
+
+  install_script:
+    - apt-get update
+    - apt-get install -y python3-pip kpartx qemu-utils git debootstrap
+    - pip install -r requirements.txt
+    - wget https://dl.min.io/client/mc/release/linux-amd64/mc
+    - chmod +x mc
+    - ./mc alias set minio https://minio.services.osism.tech $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+
+  submodules_script:
+    - git submodule init
+    - git submodule update
+
+  build_script:
+    - bash scripts/build.sh
+
+  push_script:
+    - ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-$VERSION.qcow2 minio/openstack-octavia-amphora-image
+    - ./mc policy set download minio/openstack-octavia-amphora-image/octavia-amphora-haproxy-$VERSION.qcow2
