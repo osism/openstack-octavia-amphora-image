@@ -1,2 +1,2 @@
-diskimage-builder==3.20.3
+diskimage-builder==3.21.1
 python-openstackclient==5.8.0
