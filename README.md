@@ -16,18 +16,18 @@
 
 ```
 $ pip3 install python-openstackclient
-$ qemu-img convert octavia-amphora-haproxy-xena.qcow2 octavia-amphora-haproxy-xena.img
+$ qemu-img convert octavia-amphora-haproxy-yoga.qcow2 octavia-amphora-haproxy-yoga.img
 $ openstack --os-cloud octavia image create \
     --community \
     --disk-format raw \
-    --file octavia-amphora-haproxy-xena.img \
+    --file octavia-amphora-haproxy-yoga.img \
     --min-disk 2 \
     --min-ram 1024 \
     --property hw_disk_bus=scsi \
     --property hw_scsi_model=virtio-scsi \
     --property os_distro=ubuntu \
     --property os_version=20.04 \
-    "OpenStack Octavia Amphora Haproxy XENA"
+    "OpenStack Octavia Amphora Haproxy YOGA"
 ```
 
 ## References
