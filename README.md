@@ -6,6 +6,7 @@
 
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-xena.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-yoga.qcow2
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-zed.qcow2
 
 ## Old images
 
@@ -16,18 +17,18 @@
 
 ```
 $ pip3 install python-openstackclient
-$ qemu-img convert octavia-amphora-haproxy-yoga.qcow2 octavia-amphora-haproxy-yoga.img
+$ qemu-img convert octavia-amphora-haproxy-zed.qcow2 octavia-amphora-haproxy-zed.img
 $ openstack --os-cloud octavia image create \
     --community \
     --disk-format raw \
-    --file octavia-amphora-haproxy-yoga.img \
+    --file octavia-amphora-haproxy-zed.img \
     --min-disk 2 \
     --min-ram 1024 \
     --property hw_disk_bus=scsi \
     --property hw_scsi_model=virtio-scsi \
     --property os_distro=ubuntu \
     --property os_version=20.04 \
-    "OpenStack Octavia Amphora Haproxy YOGA"
+    "OpenStack Octavia Amphora Haproxy ZED"
 ```
 
 ## References
