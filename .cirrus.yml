@@ -20,7 +20,7 @@ env:
 
 zed_task:
   environment:
-    VERSION: zed
+    VERSION: "2023.1"
     DISTRIBUTION_RELEASE: jammy
 
   install_script:

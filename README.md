@@ -4,31 +4,32 @@
 
 ## Current images
 
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.1.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-zed.qcow2
 
 ## Old images
 
-* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-victoria.qcow2
-* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-wallaby.qcow2
-* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-xena.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-yoga.qcow2
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-xena.qcow2
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-wallaby.qcow2
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-victoria.qcow2
 
 ## Upload
 
 ```
 $ pip3 install python-openstackclient
-$ qemu-img convert octavia-amphora-haproxy-zed.qcow2 octavia-amphora-haproxy-zed.img
+$ qemu-img convert octavia-amphora-haproxy-2023.1.qcow2 octavia-amphora-haproxy-2023.1.img
 $ openstack --os-cloud octavia image create \
     --community \
     --disk-format raw \
-    --file octavia-amphora-haproxy-zed.img \
+    --file octavia-amphora-haproxy-2023.1.img \
     --min-disk 2 \
     --min-ram 1024 \
     --property hw_disk_bus=scsi \
     --property hw_scsi_model=virtio-scsi \
     --property os_distro=ubuntu \
     --property os_version=20.04 \
-    "OpenStack Octavia Amphora Haproxy ZED"
+    "OpenStack Octavia Amphora Haproxy 2023.1"
 ```
 
 ## References
