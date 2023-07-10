@@ -29,6 +29,7 @@ bash diskimage-create.sh \
     -d $DISTRIBUTION_RELEASE \
     -g $BRANCH \
     -i $DISTRIBUTION \
+    -m \
     -o octavia-amphora-haproxy-$VERSION.qcow2 \
     -s 2 \
     -t qcow2
