@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+mv /tmp/logrotate.timer /lib/systemd/system/logrotate.timer
+chown root:root /lib/systemd/system/logrotate.timer
+chmod 0644 /lib/systemd/system/logrotate.timer
