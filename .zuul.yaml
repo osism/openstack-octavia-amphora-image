@@ -1,0 +1,29 @@
+---
+- job:
+    name: image-build
+    parent: base
+    pre-run: playbooks/pre.yml
+    run: playbooks/build.yml
+    timeout: 1800
+
+- job:
+    name: image-build-zed
+    parent: image-build
+    vars:
+      version_openstack: zed
+      upload_image: false
+
+- job:
+    name: image-build-antelope
+    parent: image-build
+    vars:
+      version_openstack: "2023.1"
+      upload_image: false
+
+- project:
+    merge-mode: squash-merge
+    default-branch: main
+    check:
+      jobs:
+        - image-build-zed
+        - image-build-antelope

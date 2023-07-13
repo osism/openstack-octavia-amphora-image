@@ -1,0 +1,56 @@
+---
+- name: Build image
+  hosts: all
+
+  tasks:
+    - name: Run build script
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}"
+        cmd: |
+          set -e
+          set -x
+
+          VERSION={{ version_openstack }}
+          DISTRIBUTION=ubuntu-minimal
+          DISTRIBUTION_RELEASE=jammy
+
+          export CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"
+          export DIB_CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"
+
+          BRANCH="stable/$VERSION"
+
+          if [[ ! -e octavia ]]; then
+              git clone https://github.com/openstack/octavia
+          fi
+
+          pushd octavia/diskimage-create
+
+          bash diskimage-create.sh \
+              -a amd64 \
+              -b haproxy \
+              -d $DISTRIBUTION_RELEASE \
+              -g $BRANCH \
+              -i $DISTRIBUTION \
+              -m \
+              -o octavia-amphora-haproxy-$VERSION.qcow2 \
+              -s 2 \
+              -t qcow2
+
+          qemu-img info octavia-amphora-haproxy-$VERSION.qcow2
+          sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.checksum
+
+          popd
+
+    - name: Run upload script
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}"
+        cmd: |
+          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          ./mc alias set minio https://swift.services.a.regiocloud.tech {{ minio.MINIO_ACCESS_KEY | trim }} {{ minio.MINIO_SECRET_KEY | trim }}
+          ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+          ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+      when: upload_image | bool
+      no_log: true
