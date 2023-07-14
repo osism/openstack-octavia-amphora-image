@@ -38,19 +38,19 @@
               -t qcow2
 
           qemu-img info octavia-amphora-haproxy-$VERSION.qcow2
-          sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.checksum
+          sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.CHECKSUM
 
           popd
 
     - name: Run upload script
       ansible.builtin.shell:
         executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
+        chdir: "{{ zuul.project.src_dir }}/octavia/diskimage-create"
         cmd: |
           wget https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
           ./mc alias set minio https://swift.services.a.regiocloud.tech {{ minio.MINIO_ACCESS_KEY | trim }} {{ minio.MINIO_SECRET_KEY | trim }}
-          ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
-          ./mc cp octavia/diskimage-create/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2 minio/openstack-octavia-amphora-image
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
       when: upload_image | bool
       no_log: true
