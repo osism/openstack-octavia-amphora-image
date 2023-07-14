@@ -1,4 +1,30 @@
 ---
+- secret:
+    name: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+    data:
+      MINIO_ACCESS_KEY: !encrypted/pkcs1-oaep
+        - dBcaK9dep9wxRlC43EYbhRmbjrjDzH/w+5QzfO9YXjnwEKgChGI0ktZrdwClERyTVjHip
+          AiNEWWOKV41Perinr2fBuxSVKxAIiGts/ECcGDFLevh2IN61lGcX8XaiRjM9fc65RaEih
+          xLJB7y6//is9McywHRUIjCZwfsbU92TkFH98Hu91NUU88D8jqTQilzTxzq/lsvzAoxeYB
+          BBauOGw8NCIRLOHLkl+Qd6AMWUijCt7cUwG/5yYXcF7Cus2lO7GPSr3b182M2eAqeZ+rE
+          5mk0JYfnFILoenGCaLFhN14F2Fc2/3qzN7ib00usWZ6/PDywmXr4IGWRBclVYqpfjiDYN
+          V6cl8dgvshSt7731gk3pRb7QBiAZ5FhMQrKNxqFRqpXQfnoPMr0KH/N3wv9TvKCqNBeol
+          QOmprdiUwS77YyaeaVTUUIdgtJLsRnjmEXoSDmGpa+gj/54EOF9hLn8h8LQPt75OVgO6+
+          3mCO8FmjHvR6EAIs/3NW60bAnwU8o++aHnz4rPZV8cioSV7sJfNhZTeraWEq6/XRahNhi
+          BWp8mSMN/1DK75uluAfHuQma0TZG6F4OfEVBwje2Lj5ApWwJHqjD9qpsG1STGfQQtaoc5
+          pQku9P2MhDbfQpQ/kK0BA83GZS8oHITPrZeR12oqNhRdOpG7w+E3T03mZP9Uss=
+      MINIO_SECRET_KEY: !encrypted/pkcs1-oaep
+        - ihmaXfnpNS58b7Nd8Dm9eOtpDllRybo5hFHY7BsRIUDvOEYRGOgAkqUP3a756ZqZcm6EI
+          PN+W/AFb9obpr4TVn+Z+OuNlpNx8qPjiOn1souARVwNl+q5D1d6J8O3WNiANonfsvPvwx
+          xy62L17YUaEr+oM1Pidpo8hdjN/5W7grbyckfs/rFvDP8ZnOWhmiv2XO9SzQKPEWX9VdD
+          tH3Y1r6AHlksPtVd9LzH/eht62XMTjR6Q4bKDRcwSlKjpUbfvgERPEAQ3f/jgSe7nxD3r
+          tDKvTrEMFc8HR84SU2aHP6qq7mMPJ7WufkIHLQ/ImXw5tl4zpb0gBHtmuqPXSL0zGgNXG
+          MCKz9Dk6NEIC2bYmtt++HjYauA998OFsL7p4eEH40VSdjuX3rJzdrE6Wu6UmqLwiSCobt
+          dJyh3J/zinhI3eMMclq9bfN6UhbTbKwMv1JUvDTtapyJWpnIrr+NdCoSn6K5rkgpBGh7i
+          KVdPu1qNxvCO8fE2NB/ubBDYYfXnHW8CEF63bYzXRoZW6UunFb7k38YHir3K3yKISRm1v
+          oahHfkqKgYEtdLI3qZaDtpxdIqi8m10vV7rAjW2bgo0fiyeiNEGFpRiqJTdhOCdT4rXiW
+          HwT3jn18sXrGoqPkgJWQUsaC3jcFczQ3lUlnnl8xNrf8VRdE7NEEU9WffMfhHQ=
+
 - job:
     name: image-build
     parent: base
@@ -19,6 +45,28 @@
     vars:
       version_openstack: "2023.1"
       upload_image: false
+
+- job:
+    name: image-publish-zed
+    parent: image-build
+    vars:
+      version_openstack: zed
+      upload_image: true
+    secrets:
+      - name: minio
+        secret: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+        pass-to-parent: true
+
+- job:
+    name: image-publish-antelope
+    parent: image-build
+    vars:
+      version_openstack: "2023.1"
+      upload_image: true
+    secrets:
+      - name: minio
+        secret: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+        pass-to-parent: true
 
 - project:
     merge-mode: squash-merge
