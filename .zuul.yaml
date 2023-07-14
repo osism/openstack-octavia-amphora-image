@@ -75,3 +75,9 @@
       jobs:
         - image-build-zed
         - image-build-antelope
+    post:
+      jobs:
+        - image-publish-antelope:
+            branches: main
+        - image-publish-zed:
+            branches: main
