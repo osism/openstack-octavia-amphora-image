@@ -1,0 +1,20 @@
+---
+- name: Pre
+  hosts: all
+
+  roles:
+    - ensure-pip
+
+  tasks:
+    - name: Run install script
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}"
+        cmd: |
+          set -e
+          set -x
+
+          sudo pip3 install -r requirements.txt
+
+          sudo apt-get update
+          sudo apt-get install -y lftp kpartx qemu-utils squashfs-tools debootstrap

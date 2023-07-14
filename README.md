@@ -1,14 +1,16 @@
 # OpenStack Octavia Amphora Image
 
-## Download
-
 ## Current images
 
-* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.1.qcow2
-* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-zed.qcow2
+* https://swift.services.a.regiocloud.tech/swift/v1/AUTH_b182637428444b9aa302bb8d5a5a418c/openstack-octavia-amphora-image/octavia-amphora-image-2023.1.qcow2
+* https://swift.services.a.regiocloud.tech/swift/v1/AUTH_b182637428444b9aa302bb8d5a5a418c/openstack-octavia-amphora-image/octavia-amphora-image-2023.1.qcow2.CHECKSUM
+* https://swift.services.a.regiocloud.tech/swift/v1/AUTH_b182637428444b9aa302bb8d5a5a418c/openstack-octavia-amphora-image/octavia-amphora-image-zed.qcow2
+* https://swift.services.a.regiocloud.tech/swift/v1/AUTH_b182637428444b9aa302bb8d5a5a418c/openstack-octavia-amphora-image/octavia-amphora-image-zed.qcow2.CHECKSUM
 
 ## Old images
 
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.1.qcow2
+* https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-zed.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-yoga.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-xena.qcow2
 * https://minio.services.osism.tech/openstack-octavia-amphora-image/octavia-amphora-haproxy-wallaby.qcow2
