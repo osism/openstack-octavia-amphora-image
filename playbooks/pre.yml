@@ -5,16 +5,22 @@
   roles:
     - ensure-pip
 
+  vars:
+    required_packages:
+      - debootstrap
+      - kpartx
+      - lftp
+      - qemu-utils
+      - squashfs-tools
+
   tasks:
-    - name: Run install script
-      ansible.builtin.shell:
-        executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
-        cmd: |
-          set -e
-          set -x
+    - name: Install required packages
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+        name: "{{ required_packages }}"
 
-          sudo pip3 install -r requirements.txt
-
-          sudo apt-get update
-          sudo apt-get install -y lftp kpartx qemu-utils squashfs-tools debootstrap
+    - name: Install required python packages
+      become: true
+      ansible.builtin.pip:
+        requirements: "{{ zuul.project.src_dir }}/requirements.txt"
