@@ -26,29 +26,29 @@
           HwT3jn18sXrGoqPkgJWQUsaC3jcFczQ3lUlnnl8xNrf8VRdE7NEEU9WffMfhHQ=
 
 - job:
-    name: image-build
+    name: openstack-octavia-amphora-image-build
     parent: base
     pre-run: playbooks/pre.yml
     run: playbooks/build.yml
     timeout: 1800
 
 - job:
-    name: image-build-zed
-    parent: image-build
+    name: openstack-octavia-amphora-image-build-zed
+    parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: zed
       upload_image: false
 
 - job:
-    name: image-build-antelope
-    parent: image-build
+    name: openstack-octavia-amphora-image-build-antelope
+    parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2023.1"
       upload_image: false
 
 - job:
-    name: image-publish-zed
-    parent: image-build
+    name: openstack-octavia-amphora-image-publish-zed
+    parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: zed
       upload_image: true
@@ -58,8 +58,8 @@
         pass-to-parent: true
 
 - job:
-    name: image-publish-antelope
-    parent: image-build
+    name: openstack-octavia-amphora-image-publish-antelope
+    parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2023.1"
       upload_image: true
@@ -73,11 +73,11 @@
     default-branch: main
     check:
       jobs:
-        - image-build-zed
-        - image-build-antelope
+        - openstack-octavia-amphora-image-build-zed
+        - openstack-octavia-amphora-image-build-antelope
     post:
       jobs:
-        - image-publish-antelope:
+        - openstack-octavia-amphora-image-publish-antelope:
             branches: main
-        - image-publish-zed:
+        - openstack-octavia-amphora-image-publish-zed:
             branches: main
