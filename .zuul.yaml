@@ -1,6 +1,6 @@
 ---
 - secret:
-    name: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+    name: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
     data:
       MINIO_ACCESS_KEY: !encrypted/pkcs1-oaep
         - dBcaK9dep9wxRlC43EYbhRmbjrjDzH/w+5QzfO9YXjnwEKgChGI0ktZrdwClERyTVjHip
@@ -53,8 +53,8 @@
       version_openstack: zed
       upload_image: true
     secrets:
-      - name: minio
-        secret: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+      - name: secret
+        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
         pass-to-parent: true
 
 - job:
@@ -64,8 +64,8 @@
       version_openstack: "2023.1"
       upload_image: true
     secrets:
-      - name: minio
-        secret: MINIO_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+      - name: secret
+        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
         pass-to-parent: true
 
 - project:
