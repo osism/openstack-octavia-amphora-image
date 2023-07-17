@@ -27,6 +27,7 @@
 
 - job:
     name: openstack-octavia-amphora-image-build
+    nodeset: ubuntu-jammy-large
     parent: base
     pre-run: playbooks/pre.yml
     run: playbooks/build.yml
