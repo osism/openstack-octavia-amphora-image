@@ -1,5 +1,8 @@
 # OpenStack Octavia Amphora Image
 
+[![Build status](https://zuul.services.betacloud.xyz/api/tenant/osism/badge?project=osism/openstack-octavia-amphora-image&pipeline=post)](https://zuul.services.betacloud.xyz/t/osism/builds?project=osism%2Fopenstack-octavia-amphora-image&pipeline=post&skip=0)
+
+
 ## Current images
 
 * https://swift.services.a.regiocloud.tech/swift/v1/AUTH_b182637428444b9aa302bb8d5a5a418c/openstack-octavia-amphora-image/octavia-amphora-haproxy-zed.qcow2
