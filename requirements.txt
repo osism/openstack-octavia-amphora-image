@@ -1,2 +1,2 @@
 diskimage-builder==3.31.0
-python-openstackclient==6.2.0
+python-openstackclient==6.3.0
