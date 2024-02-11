@@ -2,28 +2,28 @@
 - secret:
     name: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
     data:
-      MINIO_ACCESS_KEY: !encrypted/pkcs1-oaep
-        - dBcaK9dep9wxRlC43EYbhRmbjrjDzH/w+5QzfO9YXjnwEKgChGI0ktZrdwClERyTVjHip
-          AiNEWWOKV41Perinr2fBuxSVKxAIiGts/ECcGDFLevh2IN61lGcX8XaiRjM9fc65RaEih
-          xLJB7y6//is9McywHRUIjCZwfsbU92TkFH98Hu91NUU88D8jqTQilzTxzq/lsvzAoxeYB
-          BBauOGw8NCIRLOHLkl+Qd6AMWUijCt7cUwG/5yYXcF7Cus2lO7GPSr3b182M2eAqeZ+rE
-          5mk0JYfnFILoenGCaLFhN14F2Fc2/3qzN7ib00usWZ6/PDywmXr4IGWRBclVYqpfjiDYN
-          V6cl8dgvshSt7731gk3pRb7QBiAZ5FhMQrKNxqFRqpXQfnoPMr0KH/N3wv9TvKCqNBeol
-          QOmprdiUwS77YyaeaVTUUIdgtJLsRnjmEXoSDmGpa+gj/54EOF9hLn8h8LQPt75OVgO6+
-          3mCO8FmjHvR6EAIs/3NW60bAnwU8o++aHnz4rPZV8cioSV7sJfNhZTeraWEq6/XRahNhi
-          BWp8mSMN/1DK75uluAfHuQma0TZG6F4OfEVBwje2Lj5ApWwJHqjD9qpsG1STGfQQtaoc5
-          pQku9P2MhDbfQpQ/kK0BA83GZS8oHITPrZeR12oqNhRdOpG7w+E3T03mZP9Uss=
-      MINIO_SECRET_KEY: !encrypted/pkcs1-oaep
-        - ihmaXfnpNS58b7Nd8Dm9eOtpDllRybo5hFHY7BsRIUDvOEYRGOgAkqUP3a756ZqZcm6EI
-          PN+W/AFb9obpr4TVn+Z+OuNlpNx8qPjiOn1souARVwNl+q5D1d6J8O3WNiANonfsvPvwx
-          xy62L17YUaEr+oM1Pidpo8hdjN/5W7grbyckfs/rFvDP8ZnOWhmiv2XO9SzQKPEWX9VdD
-          tH3Y1r6AHlksPtVd9LzH/eht62XMTjR6Q4bKDRcwSlKjpUbfvgERPEAQ3f/jgSe7nxD3r
-          tDKvTrEMFc8HR84SU2aHP6qq7mMPJ7WufkIHLQ/ImXw5tl4zpb0gBHtmuqPXSL0zGgNXG
-          MCKz9Dk6NEIC2bYmtt++HjYauA998OFsL7p4eEH40VSdjuX3rJzdrE6Wu6UmqLwiSCobt
-          dJyh3J/zinhI3eMMclq9bfN6UhbTbKwMv1JUvDTtapyJWpnIrr+NdCoSn6K5rkgpBGh7i
-          KVdPu1qNxvCO8fE2NB/ubBDYYfXnHW8CEF63bYzXRoZW6UunFb7k38YHir3K3yKISRm1v
-          oahHfkqKgYEtdLI3qZaDtpxdIqi8m10vV7rAjW2bgo0fiyeiNEGFpRiqJTdhOCdT4rXiW
-          HwT3jn18sXrGoqPkgJWQUsaC3jcFczQ3lUlnnl8xNrf8VRdE7NEEU9WffMfhHQ=
+      ACCESS_KEY: !encrypted/pkcs1-oaep
+        - EnnITO+MigDFM7LWAYYdYFMfJUSqGU7sBgqk0ZErsfAcM7uQtIKu21MQIrEyI09bGnOiA
+          srZ30Gbi9P5IGvLZIkyQfellV2mqzFUMoc2bPUZs8l6j/2ztCNvTQnfI5y4PL6oKs9tJL
+          MfpKQaHeC3Fk+XVOp8UqubmoStb5ljdiYgZz42fAaPIEo2buNG2WgfkJ/2qozZUQkeDdG
+          N3N/FSAD30B2QK+IYwEhXQqE/kIoMOMRhS6dzaQQpXQ+3JxhrjRfKJctMnmY7K6EkaNIy
+          aXvWz8mIUdUd1zAnO+6J2TPqPGJB24t/YACI89Apat7qBghDshf+GIVMxvGvddfGx0rw5
+          nhjjjytN8TOIiE+QtLMOkfITkVQW0qC6QdqFJzbahpR7hb2VKcnJy1rtt1Dq/PghzPwvB
+          7Pl8RP0YUOgtM5lLmW9Rk10VsaOxb7VkdZPZ6kZDBGxt50synGBTubiWMyIwZnj05/caU
+          +qg6DBNDfqSd5vTaac3GEX8RdwJnkvcJAigR69IabDouxEf1ADUJR5Y8sa5klM4O/Npyi
+          lxtkUq+qMrB0mDprG0GajsTewUHhmQuvK2iXtF6gYhu7nu9ZFB7guxGlZkmEHkG81k3wP
+          OLAEv1XdS62d6K2VXKKxkvZtskpkvnBqI1vcQAD6bVyXox0qI0dl7FLrQSgNj0=
+      SECRET_KEY: !encrypted/pkcs1-oaep
+        - hS96ps41fpUOzIHhYKwbkjRL/McFkr11u/f278+551ERkismUfgJE9rQBVno59+P/h6Q2
+          4kvA9uZH2mAWi6OhbXjLFJaDEex24IbWBQsgK+sxhzwVSFcAUXxJMuDRbiBO+/8z92x/y
+          VWRN9Bjc1WhHt/ImcRpA8X0hK9cpiybDwVsw/cHsiO+IEUNUxbXLSTzKiTrUNdw1DleQz
+          7odARKHP/S2rTNOnk9IVzcvv8TDh/i+sTH1HC3PlD6/UdjVc3lRSx0zOtJDKBllqxLxtO
+          RTym4XER+LLXR9Qm+4sU7r9/vgBQfERXxTEHMWYlXnJcRhVqpcXAYxArChfTztuRdiWyL
+          qRUV/9m9J2mnkKx/BDxP24Fj9UM4a20b0KTyy5cLQNtSfCqdnxR06CGSpYh7tZkK+HIJR
+          8BMB6A6PQG1pP8FDdtzdo/hjuBY6ZuTJKwBdhuZBjUsj4pPyldeVqv4GSFNOhL/iKieHk
+          RyKDSBdZyCegwzIoi0o4qNAAH7vHigbwVJuZhg8m3BqyzhAQ3ksaApmH5GuVFNHXDumXs
+          9QpZ5jaB/7DDR4OUCqp38zMnhyoI7AKA/DBjAqaxAgI+nyHSsuUy5jq1axbe7x1IJ6nSA
+          ylZKNrv6FFF4P3kOIWEE8VYNy+ZEaQZp41QdVTZoNVYEUUAwer/C1zlBgcMCbM=
 
 - semaphore:
     name: semaphore-openstack-octavia-amphora-image-publish
