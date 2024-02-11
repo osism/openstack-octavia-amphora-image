@@ -105,6 +105,11 @@
         - openstack-octavia-amphora-image-build-zed
         - openstack-octavia-amphora-image-build-antelope
         - openstack-octavia-amphora-image-build-bobcat
+    periodic-daily:
+      jobs:
+        - openstack-octavia-amphora-image-publish-zed
+        - openstack-octavia-amphora-image-publish-antelope
+        - openstack-octavia-amphora-image-publish-bobcat
     post:
       jobs:
         - openstack-octavia-amphora-image-publish-zed:
