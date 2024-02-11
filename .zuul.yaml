@@ -25,6 +25,10 @@
           oahHfkqKgYEtdLI3qZaDtpxdIqi8m10vV7rAjW2bgo0fiyeiNEGFpRiqJTdhOCdT4rXiW
           HwT3jn18sXrGoqPkgJWQUsaC3jcFczQ3lUlnnl8xNrf8VRdE7NEEU9WffMfhHQ=
 
+- semaphore:
+    name: semaphore-openstack-octavia-amphora-image-publish
+    max: 1
+
 - job:
     name: openstack-octavia-amphora-image-build
     nodeset: ubuntu-jammy-large
@@ -56,6 +60,8 @@
 
 - job:
     name: openstack-octavia-amphora-image-publish-zed
+    semaphores:
+      - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: zed
@@ -67,6 +73,8 @@
 
 - job:
     name: openstack-octavia-amphora-image-publish-antelope
+    semaphores:
+      - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2023.1"
@@ -78,6 +86,8 @@
 
 - job:
     name: openstack-octavia-amphora-image-publish-bobcat
+    semaphores:
+      - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2023.2"
