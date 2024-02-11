@@ -42,6 +42,9 @@
           qemu-img info octavia-amphora-haproxy-$VERSION.qcow2
           sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.CHECKSUM
 
+          cp octavia-amphora-haproxy-$VERSION.qcow2 octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2
+          sha256sum octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.$(date +%Y%m%d).CHECKSUM
+
           popd
 
     - name: Run upload script
@@ -54,5 +57,7 @@
           ./mc alias set minio https://swift.services.a.regiocloud.tech {{ secret.MINIO_ACCESS_KEY | trim }} {{ secret.MINIO_SECRET_KEY | trim }}
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2 minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/openstack-octavia-amphora-image
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/openstack-octavia-amphora-image
       when: upload_image | bool
       no_log: true
