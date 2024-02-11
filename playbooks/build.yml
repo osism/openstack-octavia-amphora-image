@@ -47,7 +47,7 @@
 
           popd
 
-    - name: Run upload script
+    - name: Prepare upload script
       ansible.builtin.shell:
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}/octavia/diskimage-create"
@@ -55,9 +55,16 @@
           wget https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
           ./mc alias set minio https://swift.services.a.regiocloud.tech {{ secret.MINIO_ACCESS_KEY | trim }} {{ secret.MINIO_SECRET_KEY | trim }}
+      when: upload_image | bool
+      no_log: true
+
+    - name: Run upload script
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}/octavia/diskimage-create"
+        cmd: |
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2 minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/openstack-octavia-amphora-image
       when: upload_image | bool
-      no_log: true
