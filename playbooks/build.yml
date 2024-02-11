@@ -43,7 +43,7 @@
           sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.CHECKSUM
 
           cp octavia-amphora-haproxy-$VERSION.qcow2 octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2
-          sha256sum octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.$(date +%Y%m%d).CHECKSUM
+          sha256sum octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2 > octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2.CHECKSUM
 
           popd
 
