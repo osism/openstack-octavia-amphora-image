@@ -42,6 +42,7 @@
           qemu-img info octavia-amphora-haproxy-$VERSION.qcow2
           sha256sum octavia-amphora-haproxy-$VERSION.qcow2 > octavia-amphora-haproxy-$VERSION.qcow2.CHECKSUM
 
+          echo octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2 > last-$VERSION
           cp octavia-amphora-haproxy-$VERSION.qcow2 octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2
           sha256sum octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2 > octavia-amphora-haproxy-$VERSION.$(date +%Y%m%d).qcow2.CHECKSUM
 
@@ -67,4 +68,5 @@
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/openstack-octavia-amphora-image
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+          ./mc cp last-{{ version_openstack }} minio/openstack-octavia-amphora-image
       when: upload_image | bool
