@@ -59,6 +59,13 @@
       upload_image: false
 
 - job:
+    name: openstack-octavia-amphora-image-build-dalmatian
+    parent: openstack-octavia-amphora-image-build
+    vars:
+      version_openstack: "2024.2"
+      upload_image: false
+
+- job:
     name: openstack-octavia-amphora-image-publish-antelope
     semaphores:
       - name: semaphore-openstack-octavia-amphora-image-publish
@@ -97,6 +104,19 @@
         secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
         pass-to-parent: true
 
+- job:
+    name: openstack-octavia-amphora-image-publish-dalmatian
+    semaphores:
+      - name: semaphore-openstack-octavia-amphora-image-publish
+    parent: openstack-octavia-amphora-image-build
+    vars:
+      version_openstack: "2024.2"
+      upload_image: true
+    secrets:
+      - name: secret
+        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+        pass-to-parent: true
+
 - project:
     merge-mode: squash-merge
     default-branch: main
@@ -105,11 +125,13 @@
         - openstack-octavia-amphora-image-build-antelope
         - openstack-octavia-amphora-image-build-bobcat
         - openstack-octavia-amphora-image-build-caracal
+        - openstack-octavia-amphora-image-build-dalmatian
     periodic-daily:
       jobs:
         - openstack-octavia-amphora-image-publish-antelope
         - openstack-octavia-amphora-image-publish-bobcat
         - openstack-octavia-amphora-image-publish-caracal
+        - openstack-octavia-amphora-image-publish-dalmatian
     post:
       jobs:
         - openstack-octavia-amphora-image-publish-antelope:
@@ -117,4 +139,6 @@
         - openstack-octavia-amphora-image-publish-bobcat:
             branches: main
         - openstack-octavia-amphora-image-publish-caracal:
+            branches: main
+        - openstack-octavia-amphora-image-publish-dalmatian:
             branches: main
