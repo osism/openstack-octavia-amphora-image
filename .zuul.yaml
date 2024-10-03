@@ -30,6 +30,14 @@
     max: 1
 
 - job:
+    name: openstack-octavia-amphora-image-cleanup
+    run: playbooks/cleanup.yml
+    secrets:
+      - name: secret
+        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+        pass-to-parent: true
+
+- job:
     name: openstack-octavia-amphora-image-build
     nodeset: ubuntu-jammy-large
     parent: base
@@ -128,12 +136,15 @@
         - openstack-octavia-amphora-image-build-dalmatian
     periodic-daily:
       jobs:
+        - openstack-octavia-amphora-image-cleanup
         - openstack-octavia-amphora-image-publish-antelope
         - openstack-octavia-amphora-image-publish-bobcat
         - openstack-octavia-amphora-image-publish-caracal
         - openstack-octavia-amphora-image-publish-dalmatian
     post:
       jobs:
+        - openstack-octavia-amphora-image-cleanup:
+            branches: main
         - openstack-octavia-amphora-image-publish-antelope:
             branches: main
         - openstack-octavia-amphora-image-publish-bobcat:
