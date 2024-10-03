@@ -3,7 +3,7 @@
   hosts: all
 
   tasks:
-    - name: Run cleanup script
+    - name: Prepare use of mc
       ansible.builtin.shell:
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}"
@@ -11,12 +11,11 @@
           wget https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
           ./mc alias set minio https://swift.services.a.regiocloud.tech {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
-          ./mc rm --dry-run --force --older-than 30d minio/openstack-octavia-amphora-image/octavia-amphora-haproxy/ > testing
       no_log: true
 
-    - name: Get testing logs
+    - name: Cleanup images (dry-run)
       ansible.builtin.shell:
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          cat testing
+          mc find minio/openstack-octavia-amphora-image --older-than 30d --regex "octavia-amphora-haproxy.*\.\d*\.qcow2"
