@@ -13,9 +13,9 @@
           ./mc alias set minio https://swift.services.a.regiocloud.tech {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
       no_log: true
 
-    - name: Cleanup images (dry-run)
+    - name: Cleanup images
       ansible.builtin.shell:
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          ./mc find minio/openstack-octavia-amphora-image --older-than 30d --regex "octavia-amphora-haproxy.*\.\d*\.qcow2"
+          ./mc find minio/openstack-octavia-amphora-image --older-than 30d --regex "octavia-amphora-haproxy.*\.\d*\.qcow2" --exec "mc rm {}"
