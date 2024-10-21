@@ -46,13 +46,6 @@
     timeout: 1800
 
 - job:
-    name: openstack-octavia-amphora-image-build-antelope
-    parent: openstack-octavia-amphora-image-build
-    vars:
-      version_openstack: "2023.1"
-      upload_image: false
-
-- job:
     name: openstack-octavia-amphora-image-build-bobcat
     parent: openstack-octavia-amphora-image-build
     vars:
@@ -72,19 +65,6 @@
     vars:
       version_openstack: "2024.2"
       upload_image: false
-
-- job:
-    name: openstack-octavia-amphora-image-publish-antelope
-    semaphores:
-      - name: semaphore-openstack-octavia-amphora-image-publish
-    parent: openstack-octavia-amphora-image-build
-    vars:
-      version_openstack: "2023.1"
-      upload_image: true
-    secrets:
-      - name: secret
-        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
-        pass-to-parent: true
 
 - job:
     name: openstack-octavia-amphora-image-publish-bobcat
@@ -130,22 +110,18 @@
     default-branch: main
     check:
       jobs:
-        - openstack-octavia-amphora-image-build-antelope
         - openstack-octavia-amphora-image-build-bobcat
         - openstack-octavia-amphora-image-build-caracal
         - openstack-octavia-amphora-image-build-dalmatian
     periodic-daily:
       jobs:
         - openstack-octavia-amphora-image-cleanup
-        - openstack-octavia-amphora-image-publish-antelope
         - openstack-octavia-amphora-image-publish-bobcat
         - openstack-octavia-amphora-image-publish-caracal
         - openstack-octavia-amphora-image-publish-dalmatian
     post:
       jobs:
         - openstack-octavia-amphora-image-cleanup:
-            branches: main
-        - openstack-octavia-amphora-image-publish-antelope:
             branches: main
         - openstack-octavia-amphora-image-publish-bobcat:
             branches: main
