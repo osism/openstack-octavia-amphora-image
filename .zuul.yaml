@@ -46,28 +46,28 @@
     timeout: 1800
 
 - job:
-    name: openstack-octavia-amphora-image-build-bobcat
+    name: openstack-octavia-amphora-image-build-2023.2
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2023.2"
       upload_image: false
 
 - job:
-    name: openstack-octavia-amphora-image-build-caracal
+    name: openstack-octavia-amphora-image-build-2024.1
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2024.1"
       upload_image: false
 
 - job:
-    name: openstack-octavia-amphora-image-build-dalmatian
+    name: openstack-octavia-amphora-image-build-2024.2
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2024.2"
       upload_image: false
 
 - job:
-    name: openstack-octavia-amphora-image-publish-bobcat
+    name: openstack-octavia-amphora-image-publish-2023.2
     semaphores:
       - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
@@ -80,7 +80,7 @@
         pass-to-parent: true
 
 - job:
-    name: openstack-octavia-amphora-image-publish-caracal
+    name: openstack-octavia-amphora-image-publish-2024.1
     semaphores:
       - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
@@ -93,7 +93,7 @@
         pass-to-parent: true
 
 - job:
-    name: openstack-octavia-amphora-image-publish-dalmatian
+    name: openstack-octavia-amphora-image-publish-2024.2
     semaphores:
       - name: semaphore-openstack-octavia-amphora-image-publish
     parent: openstack-octavia-amphora-image-build
@@ -110,22 +110,22 @@
     default-branch: main
     check:
       jobs:
-        - openstack-octavia-amphora-image-build-bobcat
-        - openstack-octavia-amphora-image-build-caracal
-        - openstack-octavia-amphora-image-build-dalmatian
+        - openstack-octavia-amphora-image-build-2023.2
+        - openstack-octavia-amphora-image-build-2024.1
+        - openstack-octavia-amphora-image-build-2024.2
     periodic-daily:
       jobs:
         - openstack-octavia-amphora-image-cleanup
-        - openstack-octavia-amphora-image-publish-bobcat
-        - openstack-octavia-amphora-image-publish-caracal
-        - openstack-octavia-amphora-image-publish-dalmatian
+        - openstack-octavia-amphora-image-publish-2023.2
+        - openstack-octavia-amphora-image-publish-2024.1
+        - openstack-octavia-amphora-image-publish-2024.2
     post:
       jobs:
         - openstack-octavia-amphora-image-cleanup:
             branches: main
-        - openstack-octavia-amphora-image-publish-bobcat:
+        - openstack-octavia-amphora-image-publish-2023.2:
             branches: main
-        - openstack-octavia-amphora-image-publish-caracal:
+        - openstack-octavia-amphora-image-publish-2024.1:
             branches: main
-        - openstack-octavia-amphora-image-publish-dalmatian:
+        - openstack-octavia-amphora-image-publish-2024.2:
             branches: main
