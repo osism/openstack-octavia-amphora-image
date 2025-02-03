@@ -18,4 +18,4 @@
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          ./mc find minio/openstack-octavia-amphora-image --older-than 30d --regex "octavia-amphora-haproxy.*\.\d*\.qcow2" --exec "./mc rm {}"
+          ./mc find minio/openstack-octavia-amphora-image --older-than 14d --regex "octavia-amphora-haproxy.*\.\d*\.qcow2" --exec "./mc rm {}"
