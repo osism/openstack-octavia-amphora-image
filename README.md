@@ -1,7 +1,5 @@
 # OpenStack Octavia Amphora Image
 
-[![Build status](https://zuul.services.betacloud.xyz/api/tenant/osism/badge?project=osism/openstack-octavia-amphora-image&pipeline=post)](https://zuul.services.betacloud.xyz/t/osism/builds?project=osism%2Fopenstack-octavia-amphora-image&pipeline=post&skip=0)
-
 ## Current images
 
 The images are rebuilt every day. Images with a `YYYYMMDD` marker (e.g. `octavia-amphora-haproxy-zed.20240304.qcow2`)
