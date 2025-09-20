@@ -67,6 +67,13 @@
       upload_image: false
 
 - job:
+    name: openstack-octavia-amphora-image-build-2025.2
+    parent: openstack-octavia-amphora-image-build
+    vars:
+      version_openstack: "2025.2"
+      upload_image: false
+
+- job:
     name: openstack-octavia-amphora-image-publish-2024.1
     semaphores:
       - name: semaphore-openstack-octavia-amphora-image-publish
@@ -105,6 +112,19 @@
         secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
         pass-to-parent: true
 
+- job:
+    name: openstack-octavia-amphora-image-publish-2025.2
+    semaphores:
+      - name: semaphore-openstack-octavia-amphora-image-publish
+    parent: openstack-octavia-amphora-image-build
+    vars:
+      version_openstack: "2025.2"
+      upload_image: true
+    secrets:
+      - name: secret
+        secret: SECRET_OPENSTACK_OCTAVIA_AMPHORA_IMAGE
+        pass-to-parent: true
+
 - project:
     merge-mode: squash-merge
     default-branch: main
@@ -113,12 +133,14 @@
         - openstack-octavia-amphora-image-build-2024.1
         - openstack-octavia-amphora-image-build-2024.2
         - openstack-octavia-amphora-image-build-2025.1
+        - openstack-octavia-amphora-image-build-2025.2
     periodic-daily:
       jobs:
         - openstack-octavia-amphora-image-cleanup
         - openstack-octavia-amphora-image-publish-2024.1
         - openstack-octavia-amphora-image-publish-2024.2
         - openstack-octavia-amphora-image-publish-2025.1
+        - openstack-octavia-amphora-image-publish-2025.2
     post:
       jobs:
         - openstack-octavia-amphora-image-cleanup:
@@ -128,4 +150,6 @@
         - openstack-octavia-amphora-image-publish-2024.2:
             branches: main
         - openstack-octavia-amphora-image-publish-2025.1:
+            branches: main
+        - openstack-octavia-amphora-image-publish-2025.2:
             branches: main
