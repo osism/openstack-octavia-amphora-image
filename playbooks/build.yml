@@ -55,7 +55,7 @@
         cmd: |
           wget https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
-          ./mc alias set minio https://swift.services.a.regiocloud.tech {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
+          ./mc alias set minio https://nbg1.your-objectstorage.com {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
       when: upload_image | bool
       no_log: true
 
@@ -64,9 +64,9 @@
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}/octavia/diskimage-create"
         cmd: |
-          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2 minio/openstack-octavia-amphora-image
-          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/openstack-octavia-amphora-image
-          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/openstack-octavia-amphora-image
-          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/openstack-octavia-amphora-image
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2 minio/osism/openstack-octavia-amphora-image/
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/osism/openstack-octavia-amphora-image/
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/osism/openstack-octavia-amphora-image/
+          ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/osism/openstack-octavia-amphora-image/
           ./mc cp last-{{ version_openstack }} minio/openstack-octavia-amphora-image
       when: upload_image | bool
