@@ -68,5 +68,5 @@
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM minio/osism/openstack-octavia-amphora-image/
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 minio/osism/openstack-octavia-amphora-image/
           ./mc cp octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM minio/osism/openstack-octavia-amphora-image/
-          ./mc cp last-{{ version_openstack }} minio/openstack-octavia-amphora-image
+          ./mc cp last-{{ version_openstack }} minio/osism/openstack-octavia-amphora-image/
       when: upload_image | bool
