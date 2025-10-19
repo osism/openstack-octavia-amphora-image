@@ -13,16 +13,23 @@
           ./mc alias set minio https://nbg1.your-objectstorage.com {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
       no_log: true
 
-    - name: Cleanup 2024.1 images
-      ansible.builtin.shell:
-        executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
-        cmd: |
-          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2024\.1\.*\.\d*\.qcow2" --exec "./mc rm {}"
-
     - name: Cleanup 2024.2 images
       ansible.builtin.shell:
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}"
         cmd: |
           ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2024\.2\.*\.\d*\.qcow2" --exec "./mc rm {}"
+
+    - name: Cleanup 2025.1 images
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}"
+        cmd: |
+          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2025\.1\.*\.\d*\.qcow2" --exec "./mc rm {}"
+
+    - name: Cleanup 2025.2 images
+      ansible.builtin.shell:
+        executable: /bin/bash
+        chdir: "{{ zuul.project.src_dir }}"
+        cmd: |
+          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2025\.2\.*\.\d*\.qcow2" --exec "./mc rm {}"
