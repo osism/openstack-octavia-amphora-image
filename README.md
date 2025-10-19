@@ -1,38 +1,34 @@
 # OpenStack Octavia Amphora Image
 
-## Current images
-
 The images are rebuilt every day. Images with a `YYYYMMDD` marker (e.g. `octavia-amphora-haproxy-zed.20240304.qcow2`)
 are also available for the last 30 days. The last available image of this type can be retrieved in a file `last-VERSION` (e.g. `last-zed`).
 
-### 2025.2 (Flamingo)
+## 2025.2 (Flamingo)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.2.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.2.qcow2.CHECKSUM
 
-### 2025.1 (Expoxy)
+## 2025.1 (Expoxy)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.1.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.1.qcow2.CHECKSUM
 
-### 2024.2 (Dalmatian)
+## 2024.2 (Dalmatian)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2024.2.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2024.2.qcow2.CHECKSUM
 
-## Archived images
-
-### 2024.1 (Caracal)
+## 2024.1 (Caracal)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2024.1.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2024.1.qcow2.CHECKSUM
 
-### 2023.2 (Bobcat)
+## 2023.2 (Bobcat)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.2.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.2.qcow2.CHECKSUM
 
-### 2023.1 (Antelope)
+## 2023.1 (Antelope)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.1.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2023.1.qcow2.CHECKSUM
