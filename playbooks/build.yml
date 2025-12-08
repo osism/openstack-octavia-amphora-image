@@ -17,6 +17,7 @@
 
           export CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"
           export DIB_CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"
+          export DIB_DISTRIBUTION_MIRROR=https://ftp.uni-stuttgart.de/ubuntu/
           export DIB_LOCAL_ELEMENTS="haproxy-logrotate"
           export DIB_LOCAL_ELEMENTS_PATH="$(pwd)/elements/"
 
