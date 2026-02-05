@@ -29,6 +29,12 @@
 
           pushd octavia/diskimage-create
 
+          if [[ "$VERSION" == "2023.1" ]]; then
+              git branch stable/$VERSION tags/2023.1-eom
+          elif [[ "$VERSION" == "2023.2" ]]; then
+              git branch stable/$VERSION tags/13.0.1
+          fi
+
           bash diskimage-create.sh \
               -a amd64 \
               -b haproxy \
