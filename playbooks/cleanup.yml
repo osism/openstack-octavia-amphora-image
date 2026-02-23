@@ -3,33 +3,47 @@
   hosts: all
 
   tasks:
-    - name: Prepare use of mc
-      ansible.builtin.shell:
-        executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
-        cmd: |
-          wget https://dl.min.io/client/mc/release/linux-amd64/mc
-          chmod +x mc
-          ./mc alias set minio https://nbg1.your-objectstorage.com {{ secret.ACCESS_KEY | trim }} {{ secret.SECRET_KEY | trim }}
-      no_log: true
+    - name: Install rclone
+      become: true
+      ansible.builtin.package:
+        name: rclone
+        state: present
 
     - name: Cleanup 2024.2 images
       ansible.builtin.shell:
         executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2024\.2\.*\.\d*\.qcow2" --exec "./mc rm {}"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2024.2.*.qcow2"
+      environment:
+        RCLONE_CONFIG_S3_TYPE: s3
+        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
+        RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+      no_log: true
 
     - name: Cleanup 2025.1 images
       ansible.builtin.shell:
         executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2025\.1\.*\.\d*\.qcow2" --exec "./mc rm {}"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.1.*.qcow2"
+      environment:
+        RCLONE_CONFIG_S3_TYPE: s3
+        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
+        RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+      no_log: true
 
     - name: Cleanup 2025.2 images
       ansible.builtin.shell:
         executable: /bin/bash
-        chdir: "{{ zuul.project.src_dir }}"
         cmd: |
-          ./mc find minio/osism/openstack-octavia-amphora-image/ --older-than 14d --regex "octavia-amphora-haproxy-2025\.2\.*\.\d*\.qcow2" --exec "./mc rm {}"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.2.*.qcow2"
+      environment:
+        RCLONE_CONFIG_S3_TYPE: s3
+        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
+        RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+      no_log: true
