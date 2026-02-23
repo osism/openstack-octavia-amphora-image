@@ -5,9 +5,10 @@
   tasks:
     - name: Install rclone
       become: true
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name: rclone
         state: present
+        update_cache: true
 
     - name: Cleanup 2024.2 images
       ansible.builtin.shell:
