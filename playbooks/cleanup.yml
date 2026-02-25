@@ -17,7 +17,7 @@
           rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2024.2.*.qcow2"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
-        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
@@ -30,7 +30,7 @@
           rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.1.*.qcow2"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
-        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
@@ -43,7 +43,7 @@
           rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.2.*.qcow2"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
-        RCLONE_CONFIG_S3_PROVIDER: Other
+        RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
