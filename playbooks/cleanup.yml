@@ -5,10 +5,9 @@
   tasks:
     - name: Install rclone
       become: true
-      ansible.builtin.apt:
-        name: rclone
-        state: present
-        update_cache: true
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: curl https://rclone.org/install.sh | bash
 
     - name: Cleanup 2024.2 images
       ansible.builtin.shell:
