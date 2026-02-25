@@ -72,5 +72,6 @@
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+        RCLONE_CONFIG_S3_ACL: public-read
       when: upload_image | bool
       no_log: true
