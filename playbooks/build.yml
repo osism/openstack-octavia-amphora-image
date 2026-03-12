@@ -61,11 +61,14 @@
         executable: /bin/bash
         chdir: "{{ zuul.project.src_dir }}/octavia/diskimage-create"
         cmd: |
-          rclone copyto --header-upload "x-amz-acl:public-read" octavia-amphora-haproxy-{{ version_openstack }}.qcow2 s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.qcow2
-          rclone copyto --header-upload "x-amz-acl:public-read" octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM
-          rclone copyto --header-upload "x-amz-acl:public-read" octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2
-          rclone copyto --header-upload "x-amz-acl:public-read" octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM
-          rclone copyto --header-upload "x-amz-acl:public-read" last-{{ version_openstack }} s3:osism/openstack-octavia-amphora-image/last-{{ version_openstack }}
+          set -e
+          set -x
+
+          rclone copyto octavia-amphora-haproxy-{{ version_openstack }}.qcow2 s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.qcow2
+          rclone copyto octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.qcow2.CHECKSUM
+          rclone copyto octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2 s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2
+          rclone copyto octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM s3:osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-{{ version_openstack }}.$(date +%Y%m%d).qcow2.CHECKSUM
+          rclone copyto last-{{ version_openstack }} s3:osism/openstack-octavia-amphora-image/last-{{ version_openstack }}
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
