@@ -18,8 +18,10 @@
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_REGION: nbg1
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+        RCLONE_CONFIG_S3_NO_CHECK_BUCKET: "true"
       no_log: true
 
     - name: Cleanup 2025.1 images
@@ -31,8 +33,10 @@
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_REGION: nbg1
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+        RCLONE_CONFIG_S3_NO_CHECK_BUCKET: "true"
       no_log: true
 
     - name: Cleanup 2025.2 images
@@ -44,6 +48,8 @@
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
         RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_REGION: nbg1
         RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+        RCLONE_CONFIG_S3_NO_CHECK_BUCKET: "true"
       no_log: true
