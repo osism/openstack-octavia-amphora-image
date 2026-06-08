@@ -5,6 +5,11 @@
 The images are rebuilt every day. Images with a `YYYYMMDD` marker (e.g. `octavia-amphora-haproxy-zed.20240304.qcow2`)
 are also available for the last 14 days. The last available image of this type can be retrieved in a file `last-VERSION` (e.g. `last-zed`).
 
+### 2026.1 (Gazpacho)
+
+* https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2026.1.qcow2
+* https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2026.1.qcow2.CHECKSUM
+
 ### 2025.2 (Flamingo)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.2.qcow2
