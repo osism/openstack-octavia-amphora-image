@@ -38,3 +38,18 @@
         RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
         RCLONE_CONFIG_S3_NO_CHECK_BUCKET: "true"
       no_log: true
+
+    - name: Cleanup 2026.1 images
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: |
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2026.1.*.qcow2"
+      environment:
+        RCLONE_CONFIG_S3_TYPE: s3
+        RCLONE_CONFIG_S3_PROVIDER: Ceph
+        RCLONE_CONFIG_S3_ENDPOINT: https://nbg1.your-objectstorage.com
+        RCLONE_CONFIG_S3_REGION: nbg1
+        RCLONE_CONFIG_S3_ACCESS_KEY_ID: "{{ secret.ACCESS_KEY | trim }}"
+        RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: "{{ secret.SECRET_KEY | trim }}"
+        RCLONE_CONFIG_S3_NO_CHECK_BUCKET: "true"
+      no_log: true
