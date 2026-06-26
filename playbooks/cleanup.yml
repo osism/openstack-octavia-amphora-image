@@ -13,7 +13,7 @@
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
-          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.1.*.qcow2"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.1.*.qcow2*"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
@@ -28,7 +28,7 @@
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
-          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.2.*.qcow2"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2025.2.*.qcow2*"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
@@ -43,7 +43,7 @@
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
-          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2026.1.*.qcow2"
+          rclone delete s3:osism/openstack-octavia-amphora-image/ --min-age 14d --include "octavia-amphora-haproxy-2026.1.*.qcow2*"
       environment:
         RCLONE_CONFIG_S3_TYPE: s3
         RCLONE_CONFIG_S3_PROVIDER: Ceph
