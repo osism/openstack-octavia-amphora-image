@@ -13,7 +13,7 @@
 
           VERSION={{ version_openstack }}
           DISTRIBUTION=ubuntu-minimal
-          DISTRIBUTION_RELEASE=jammy
+          DISTRIBUTION_RELEASE=noble
 
           export CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"
           export DIB_CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack"

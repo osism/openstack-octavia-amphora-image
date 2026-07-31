@@ -56,7 +56,7 @@ $ openstack --os-cloud octavia image create \
     --property hw_disk_bus=scsi \
     --property hw_scsi_model=virtio-scsi \
     --property os_distro=ubuntu \
-    --property os_version=22.04 \
+    --property os_version=24.04 \
     "OpenStack Octavia Amphora Haproxy 2025.2"
 ```
 
