@@ -56,3 +56,14 @@
             -v --stats 30s --stats-one-line
       environment:
         RCLONE_CONFIG: "{{ ansible_user_dir }}/.rclone.conf"
+
+    - name: Cleanup 2026.2 images
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: |
+          rclone delete s3:osism/openstack-octavia-amphora-image/ \
+            --min-age 14d \
+            --include "octavia-amphora-haproxy-2026.2.*.qcow2*" \
+            -v --stats 30s --stats-one-line
+      environment:
+        RCLONE_CONFIG: "{{ ansible_user_dir }}/.rclone.conf"
