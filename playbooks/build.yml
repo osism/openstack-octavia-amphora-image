@@ -21,7 +21,7 @@
           export DIB_LOCAL_ELEMENTS="haproxy-logrotate"
           export DIB_LOCAL_ELEMENTS_PATH="$(pwd)/elements/"
 
-          BRANCH="stable/$VERSION"
+          BRANCH="{{ octavia_branch | default('stable/' + version_openstack) }}"
 
           if [[ ! -e octavia ]]; then
               git clone https://github.com/openstack/octavia

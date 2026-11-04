@@ -50,6 +50,7 @@
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2025.1"
+      octavia_branch: unmaintained/2025.1
       upload_image: false
 
 - job:
@@ -80,6 +81,7 @@
     parent: openstack-octavia-amphora-image-build
     vars:
       version_openstack: "2025.1"
+      octavia_branch: unmaintained/2025.1
       upload_image: true
     secrets:
       - name: secret
