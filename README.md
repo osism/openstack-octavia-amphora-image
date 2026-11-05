@@ -20,12 +20,12 @@ are also available for the last 14 days. The last available image of this type c
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.2.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.2.qcow2.CHECKSUM
 
+## Archived images
+
 ### 2025.1 (Epoxy)
 
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.1.qcow2
 * https://nbg1.your-objectstorage.com/osism/openstack-octavia-amphora-image/octavia-amphora-haproxy-2025.1.qcow2.CHECKSUM
-
-## Archived images
 
 ### 2024.2 (Dalmatian)
 
