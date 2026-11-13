@@ -2,6 +2,19 @@
 - name: Build image
   hosts: all
 
+  vars:
+    # Ref of openstack/octavia that the amphora agent is built from, per
+    # OpenStack release. A release not listed here builds from
+    # stable/<release>. When upstream moves a release on, add it with
+    # unmaintained/<release> or the <release>-eol tag, for example:
+    #
+    #   octavia_refs:
+    #     "2026.1": unmaintained/2026.1
+    #
+    # See "Retiring OpenStack Releases" in the OSISM developer guide for
+    # when to change it.
+    octavia_refs: {}
+
   tasks:
     - name: Run build script
       ansible.builtin.shell:
@@ -21,7 +34,7 @@
           export DIB_LOCAL_ELEMENTS="haproxy-logrotate"
           export DIB_LOCAL_ELEMENTS_PATH="$(pwd)/elements/"
 
-          BRANCH="stable/$VERSION"
+          BRANCH="{{ octavia_refs[version_openstack] | default('stable/' ~ version_openstack) }}"
 
           if [[ ! -e octavia ]]; then
               git clone https://github.com/openstack/octavia
