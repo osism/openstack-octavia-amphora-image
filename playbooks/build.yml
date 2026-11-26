@@ -27,6 +27,8 @@
               git clone https://github.com/openstack/octavia
           fi
 
+          source /tmp/venv/bin/activate
+
           pushd octavia/diskimage-create
 
           bash diskimage-create.sh \
